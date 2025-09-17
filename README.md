@@ -5,7 +5,7 @@
 ![Banco de Dados](https://img.shields.io/badge/SQL-Server-red?style=flat-square&logo=microsoftsqlserver)  
 ![Licença](https://img.shields.io/badge/license-MIT-green?style=flat-square)  
 
-Projeto desenvolvido em **C# com .NET 8** paraGestão Academica , integrando com **SQL Server** como banco de dados.  
+Projeto desenvolvido em **C# com .NET 8** para Gestão Academica , integrando com **SQL Server** como banco de dados.  
 
 ## 🚀 Tecnologias Utilizadas  
 - 💻 **C#** (.NET 8)  
@@ -59,5 +59,6 @@ A aplicação estará disponível em **[https://localhost:5001](https://localhos
 ## 📄 Licença
 
 Este projeto é open-source, sob a licença [MIT](LICENSE).
+
 
 
