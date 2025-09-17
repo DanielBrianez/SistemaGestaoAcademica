@@ -1,11 +1,11 @@
-# 📝 Sistema de Cadastro de Clientes  
+# 📝 Sistema de Cadastro Academico
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-blueviolet?style=flat-square&logo=dotnet)  
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow?style=flat-square)  
 ![Banco de Dados](https://img.shields.io/badge/SQL-Server-red?style=flat-square&logo=microsoftsqlserver)  
 ![Licença](https://img.shields.io/badge/license-MIT-green?style=flat-square)  
 
-Projeto desenvolvido em **C# com .NET 8** para gerenciamento de clientes, integrando com **SQL Server** como banco de dados.  
+Projeto desenvolvido em **C# com .NET 8** para gerenciamento academico, integrando com **SQL Server** como banco de dados.  
 
 ## 🚀 Tecnologias Utilizadas  
 - 💻 **C#** (.NET 8)  
