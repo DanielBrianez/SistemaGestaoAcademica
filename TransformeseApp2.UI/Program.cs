@@ -8,7 +8,7 @@ UnidadeBLL unidadeBLL = new UnidadeBLL();
 while (true)
 {
     Console.Clear();
-    Console.WriteLine(" === Sistema Transforme-se === ");
+    Console.WriteLine(" === Sistema de Cadastro de Alunos === ");
     Console.WriteLine(" 1 - Cadastrar Aluno");
     Console.WriteLine(" 2 - Listar Alunos");
     Console.WriteLine(" 3 - Cadastrar Curso");
@@ -59,10 +59,14 @@ while (true)
                 Console.WriteLine(
 
                     $"""
+                    /n
+
                     ID: {aluno.Id}
                     Nome:{aluno.Nome}
                     Curso: {curso?.Nome ?? "Não encontrado"}
                     Unidade: {unidade?.Nome ?? "Não encontrada"}
+
+                    /n
                     """
 
                    );
@@ -75,16 +79,20 @@ while (true)
 
             Console.WriteLine("Nome do curso: ");
             string nomeCurso = Console.ReadLine();
-               
-            
+
+            Console.WriteLine("Carga horária do curso (em horas): ");
+            int cargaHoraria = int.Parse(Console.ReadLine());    
+
+
             cursoBLL.CadastrarCurso(new CursoDTO
             {
 
                 Nome = nomeCurso,
+                CargaHoraria = cargaHoraria
 
             });
 
-            Console.WriteLine($"Curso {nomeCurso} cadastrado com sucesso!");
+            Console.WriteLine($"Curso {nomeCurso} com carga horária de {cargaHoraria}h cadastrado com sucesso!");
 
             pause();
             break;
@@ -97,9 +105,13 @@ while (true)
             {
                 Console.WriteLine(
                     $"""
+                    /n
+
                     ID: {curso.Id}
                     Nome: {curso.Nome}
                     Carga Horária: {curso.CargaHoraria}
+
+                    /n
                     """
 
                    );
@@ -108,6 +120,60 @@ while (true)
             pause();
             break;
 
+            case "5":
+
+            Console.WriteLine("Nome da unidade: ");
+            string nomeUnidade = Console.ReadLine();
+
+            Console.WriteLine("Endereço da unidade: ");
+            string enderecoUnidade = Console.ReadLine();
+
+
+            unidadeBLL.CadastrarUnidade(new UnidadeDTO
+            {
+
+                Nome = nomeUnidade,
+                Endereco = enderecoUnidade
+
+            });
+
+            Console.WriteLine($"Unidade {nomeUnidade} cadastrada com sucesso!");
+
+            pause();
+            break;
+
+            case "6":
+
+            Console.Clear();
+            var unidades = unidadeBLL.ListarUnidades();
+            foreach (var unidade in unidades)
+            {
+                Console.WriteLine(
+                    $"""
+                    /n
+
+                    ID: {unidade.Id}
+                    Nome: {unidade.Nome}
+                    Endereço: {unidade.Endereco}
+
+                    /n
+                    """
+
+                   );
+            }
+
+            pause();
+            break;
+
+            case "0":
+
+            return;
+
+        default:
+
+            Console.WriteLine("Opção inválida");
+            pause();
+            break;
     }
 }
 
