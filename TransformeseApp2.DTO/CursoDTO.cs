@@ -20,9 +20,10 @@ namespace TransformeseApp2.DTO
         public string Info(bool detalhado) => detalhado ? $"[Curso Detalhado] {Nome} - {CargaHoraria}h" : Info();
 
 
-          
-            
+
+
+    }
+
+
 }
 
-        
-    }

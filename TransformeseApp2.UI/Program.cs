@@ -8,177 +8,150 @@ UnidadeBLL unidadeBLL = new UnidadeBLL();
 while (true)
 {
     Console.Clear();
-    Console.WriteLine(" === Sistema de Cadastro de Alunos === ");
-    Console.WriteLine(" 1 - Cadastrar Aluno");
-    Console.WriteLine(" 2 - Listar Alunos");
-    Console.WriteLine(" 3 - Cadastrar Curso");
-    Console.WriteLine(" 4 - Listar Cursos");
+    Console.WriteLine(" === Sistema Transforme-se === ");
+    Console.WriteLine(" 1 - Cadastrar Aluno ");
+    Console.WriteLine(" 2 - Listar Alunos ");
+    Console.WriteLine(" 3 - Cadastrar Curso ");
+    Console.WriteLine(" 4 - Listar Cursos ");
     Console.WriteLine(" 5 - Cadastrar Unidade");
     Console.WriteLine(" 6 - Listar Unidades");
     Console.WriteLine(" 0 - Sair");
-    
+
     Console.WriteLine(" Escolha uma opção: ");
 
     string opcao = Console.ReadLine();
 
-    switch(opcao)
+    switch (opcao)
     {
         case "1":
             Console.WriteLine("Nome do aluno: ");
-            string nomeAluno = Console.ReadLine();  
-            
-            Console.WriteLine("ID do curso:");
+            string nomeAluno = Console.ReadLine();
+
+            Console.WriteLine("ID do Curso: ");
             int cursoId = int.Parse(Console.ReadLine());
-            
-            Console.WriteLine("ID da unidade:");
+
+            Console.WriteLine("ID do Unidade: ");
             int unidadeId = int.Parse(Console.ReadLine());
 
             alunoBLL.CadastrarAluno(new AlunoDTO
             {
                 Nome = nomeAluno,
                 CursoId = cursoId,
-                UnidadeId = unidadeId,
+                UnidadeId = unidadeId
 
             });
 
-            Console.WriteLine($"Aluno {nomeAluno} cadastrado com sucesso!");
-
-            pause();
+            Console.WriteLine($"Aluno {nomeAluno} cadastrado com sucesso");
+            Pause();
             break;
 
         case "2":
             Console.Clear();
-            Console.WriteLine("=== Lista de alunos ===");
+            Console.WriteLine(" === LISTA DE ALUNOS === ");
 
             var alunos = alunoBLL.ListarAlunos();
-            foreach ( var aluno in alunos)
+
+            foreach (var aluno in alunos)
             {
                 var curso = cursoBLL.GetById(aluno.CursoId);
                 var unidade = unidadeBLL.GetById(aluno.UnidadeId);
 
+                //?? - operador de coalêscencia nula
                 Console.WriteLine(
-
                     $"""
-                    /n
-
                     ID: {aluno.Id}
-                    Nome:{aluno.Nome}
-                    Curso: {curso?.Nome ?? "Não encontrado"}
-                    Unidade: {unidade?.Nome ?? "Não encontrada"}
-
-                    /n
+                    Nome: {aluno.Nome}
+                    Curso: {curso?.Nome ?? "não encontrado"} 
+                    Unidade: {unidade?.Nome ?? "não encontrada"}
                     """
-
-                   );
+                    );
             }
 
-            pause();
+            Pause();
             break;
 
-            case "3":
+        case "3":
+            Console.WriteLine("Nome do Curso:");
 
-            Console.WriteLine("Nome do curso: ");
             string nomeCurso = Console.ReadLine();
 
-            Console.WriteLine("Carga horária do curso (em horas): ");
-            int cargaHoraria = int.Parse(Console.ReadLine());    
+            cursoBLL.CadastrarCurso(new CursoDTO { Nome = nomeCurso });
 
-
-            cursoBLL.CadastrarCurso(new CursoDTO
-            {
-
-                Nome = nomeCurso,
-                CargaHoraria = cargaHoraria
-
-            });
-
-            Console.WriteLine($"Curso {nomeCurso} com carga horária de {cargaHoraria}h cadastrado com sucesso!");
-
-            pause();
+            Console.WriteLine("Curso cadastrado com sucesso!");
+            Pause();
             break;
 
-            case "4":
-
+        case "4":
             Console.Clear();
             var cursos = cursoBLL.ListarCursos();
-            foreach(var curso in cursos)
+            foreach (var curso in cursos)
             {
                 Console.WriteLine(
-                    $"""
-                    /n
+                    $"ID: {curso.Id}, " +
+                    $"Nome: {curso.Nome}, " +
+                    $"Carga Horária: {curso.CargaHoraria}"
+                    );
 
-                    ID: {curso.Id}
-                    Nome: {curso.Nome}
-                    Carga Horária: {curso.CargaHoraria}
-
-                    /n
-                    """
-
-                   );
             }
-
-            pause();
+            Pause();
             break;
 
-            case "5":
+        case "5":
 
             Console.WriteLine("Nome da unidade: ");
             string nomeUnidade = Console.ReadLine();
+         
 
-            Console.WriteLine("Endereço da unidade: ");
-            string enderecoUnidade = Console.ReadLine();
+            unidadeBLL.CadastrarUnidade(new UnidadeDTO { Nome = nomeUnidade});
 
-
-            unidadeBLL.CadastrarUnidade(new UnidadeDTO
-            {
-
-                Nome = nomeUnidade,
-                Endereco = enderecoUnidade
-
-            });
-
-            Console.WriteLine($"Unidade {nomeUnidade} cadastrada com sucesso!");
-
-            pause();
+            Console.WriteLine("Unidade cadastrada com sucesso!");
+            Pause();
             break;
 
-            case "6":
-
+        case "6":
             Console.Clear();
             var unidades = unidadeBLL.ListarUnidades();
-            foreach (var unidade in unidades)
+            foreach(var unidade in unidades)
             {
-                Console.WriteLine(
-                    $"""
-                    /n
-
-                    ID: {unidade.Id}
-                    Nome: {unidade.Nome}
-                    Endereço: {unidade.Endereco}
-
-                    /n
-                    """
-
-                   );
+                Console.WriteLine($"ID: {unidade.Id}, Nome: {unidade.Nome}");
             }
-
-            pause();
+            Pause();
             break;
 
-            case "0":
-
+        case "0":
             return;
 
         default:
-
-            Console.WriteLine("Opção inválida");
-            pause();
+            Console.WriteLine("Opção inválida.");
+            Pause();
             break;
     }
+
 }
 
-static void pause()
+static void Pause()
 {
-    Console.WriteLine("\n Pressione qualquer tecla para continuar...");
+    Console.WriteLine("\nPressione qualquer tecla para continuar.");
     Console.ReadKey();
+
+    //Console.WriteLine("\nPressione 'F' para continuar...");
+
+    //while (true)
+    //{
+    //    ConsoleKeyInfo keyInfo = Console.ReadKey(true); // true para não mostrar a tecla no console
+    //    if (keyInfo.Key == ConsoleKey.F)
+    //    {
+    //        break; // Sai do loop e continua a aplicação
+    //    }
+    //    else
+    //    {
+    //        Console.WriteLine("Tecla inválida. Pressione 'S' para continuar.");
+    //    }
+    //}
+
+    //ou
+
+    //Console.WriteLine("\nPressione 'F' para continuar.");
+    //while (Console.ReadKey(true).Key != ConsoleKey.F) { }
+
 }
