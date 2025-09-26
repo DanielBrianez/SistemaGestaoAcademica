@@ -6,18 +6,33 @@ namespace TransformeseApp2.BLL
     public class CursoBLL
     {
         private List<CursoDTO> _cursos = Database.Cursos;
+
         public void CadastrarCurso(CursoDTO cursoDTO)
         {
             //Validação antes de salvar o curso
             if (string.IsNullOrWhiteSpace(cursoDTO.Nome))
-                throw new Exception("Nome do curso é obrigatório.");
+            {
+                throw new Exception("Nome é obrigatório");
+            }
             Database.Cursos.Add(cursoDTO);
         }
+
         public List<CursoDTO> ListarCursos() => Database.Cursos;
 
         public CursoDTO GetById(int id)
         {
-            return _cursos.FirstOrDefault(c => c.Id == id);
+            return _cursos.FirstOrDefault(curso => curso.Id == id);
+        }
+
+        public void RemoverCurso(int Id)
+        {
+            var curso = Database.Cursos.FirstOrDefault(c => c.Id == Id);
+
+            if (curso == null)
+            {
+                throw new Exception("Curso não encontrado");
+            }
+            Database.Cursos.Remove(curso);
         }
     }
 }
